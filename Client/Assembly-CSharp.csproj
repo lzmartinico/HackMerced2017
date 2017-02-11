@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ClickToDestroy.cs" />
+     <Compile Include="Assets\Scripts\ClickToShatter_Cube.cs" />
+     <Compile Include="Assets\Scripts\DestroyOnTimer.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
