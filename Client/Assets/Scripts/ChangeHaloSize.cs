@@ -18,5 +18,8 @@ public class ChangeHaloSize : MonoBehaviour {
 		past += Time.deltaTime;
 		float step = speed * past;
 	  lt.range = originalRange-step;
+		if (lt.range <= 0) {
+			Destroy (gameObject);
+		}
 	}
 }
