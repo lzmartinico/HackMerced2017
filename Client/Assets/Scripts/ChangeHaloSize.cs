@@ -10,18 +10,18 @@ public class ChangeHaloSize : MonoBehaviour {
 	public Light lt;
 	public float past = 0;
   void Start() {
-         lt = GetComponent<Light>();
-         originalRange = lt.range;
-//				 Debug.Log(originalRange);
-		originalIntensity = lt.intensity;
+        speed = SphereSpeed.get();
+        lt = GetComponent<Light>();
+        originalRange = lt.range;
+        originalIntensity = lt.intensity;
   }
 	void Update() {
-		past += Time.deltaTime;
-		float step = speed * past;
-	  lt.range = originalRange-step;
-		lt.intensity = originalIntensity - step;
+		float step = speed * Time.deltaTime;
+        lt.range -= step;
+		lt.intensity -= step;
 		if (lt.range <= 1) {
 			Destroy (gameObject);
+            // Lose points?
 		}
 	}
 }
