@@ -9,7 +9,8 @@ public class MoveTowardsStoppingPoint : MonoBehaviour {
 
 	void Start () {
 		GameObject[] stoppingPoints = GameObject.FindGameObjectsWithTag ("StoppingPoint");
-		target = stoppingPoints [0].transform;
+		int index = Random.Range (0, stoppingPoints.Length-1);
+		target = stoppingPoints [index].transform;
 	}
 
 	void Update() {
