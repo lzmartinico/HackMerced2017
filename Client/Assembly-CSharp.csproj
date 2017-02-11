@@ -123,6 +123,7 @@
      <Compile Include="Assets\LeapMotionModules\Hands\Scripts\PolyHand.cs" />
      <Compile Include="Assets\LeapMotionModules\Hands\Scripts\RiggedFinger.cs" />
      <Compile Include="Assets\LeapMotionModules\Hands\Scripts\RiggedHand.cs" />
+     <Compile Include="Assets\Scripts\ChangeHaloSize.cs" />
      <Compile Include="Assets\Scripts\ClickToDestroy.cs" />
      <Compile Include="Assets\Scripts\ClickToShatter_Cube.cs" />
      <Compile Include="Assets\Scripts\DestroyOnTimer.cs" />
