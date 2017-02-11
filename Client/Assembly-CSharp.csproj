@@ -118,7 +118,7 @@
      <Compile Include="Assets\Scripts\ClickToDestroy.cs" />
      <Compile Include="Assets\Scripts\ClickToShatter_Cube.cs" />
      <Compile Include="Assets\Scripts\DestroyOnTimer.cs" />
-     <Compile Include="Assets\Scripts\MoveTowardsTarget.cs" />
+     <Compile Include="Assets\Scripts\MoveTowardsCamera.cs" />
      <Compile Include="Assets\Scripts\Spin.cs" />
      <None Include="Assets\Plugins\donotdelete.txt" />
      <None Include="Assets\LeapMotion\Resources\LeapCG.cginc" />

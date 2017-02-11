@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveTowardsTarget : MonoBehaviour {
+public class MoveTowardsCamera : MonoBehaviour {
 	
 	public Transform target;
 	public float speed;
+
+	void Start() {
+		target = Camera.main.gameObject.transform;
+	}
 
 	void Update() {
 		float step = speed * Time.deltaTime;
