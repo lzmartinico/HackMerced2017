@@ -1,5 +1,4 @@
 *.bin
 *.log
-*.meta
 Client/Library/
 Client/Temp/
