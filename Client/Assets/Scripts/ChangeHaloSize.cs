@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ChangeHaloSize : MonoBehaviour {
 
-	public Transform target;
 	public float speed;
 	public float originalRange;
 	public Light lt;
@@ -12,7 +11,7 @@ public class ChangeHaloSize : MonoBehaviour {
   void Start() {
          lt = GetComponent<Light>();
          originalRange = lt.range;
-				 Debug.Log(originalRange);
+//				 Debug.Log(originalRange);
   }
 	void Update() {
 		past += Time.deltaTime;
