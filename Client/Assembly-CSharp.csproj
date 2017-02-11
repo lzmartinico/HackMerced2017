@@ -128,6 +128,7 @@
      <Compile Include="Assets\Scripts\ClickToShatter_Cube.cs" />
      <Compile Include="Assets\Scripts\DestroyOnTimer.cs" />
      <Compile Include="Assets\Scripts\IncrementScoreOnInstantiate.cs" />
+     <Compile Include="Assets\Scripts\MoveTowardsDestructionPoint.cs" />
      <Compile Include="Assets\Scripts\MoveTowardsStoppingPoint.cs" />
      <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
      <Compile Include="Assets\Scripts\SphereSpawner.cs" />

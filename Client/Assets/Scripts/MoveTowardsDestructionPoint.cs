@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveTowardsStoppingPoint : MonoBehaviour {
+public class MoveTowardsDestructionPoint : MonoBehaviour {
 
 	public float speed;
 	private Transform target;

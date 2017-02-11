@@ -11,4 +11,9 @@ public class ScoreKeeper : MonoBehaviour {
 		score += 1;
 		score_count.text = score.ToString();
 	}
+
+	public void DecrementScore(){
+		score -= 1;
+		score_count.text = score.ToString();
+	}
 }
