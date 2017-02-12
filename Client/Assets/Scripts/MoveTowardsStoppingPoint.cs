@@ -8,6 +8,7 @@ public class MoveTowardsStoppingPoint : MonoBehaviour {
 	private Transform target;
 
 	void Start () {
+        speed = SphereSpeed.get();
 		GameObject[] stoppingPoints = GameObject.FindGameObjectsWithTag ("StoppingPoint");
 		int index = Random.Range (0, stoppingPoints.Length-1);
 		target = stoppingPoints [index].transform;
