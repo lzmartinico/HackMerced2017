@@ -17,7 +17,7 @@ public class ObjectWasHit : MonoBehaviour {
 		UpdateObjectClass (objectClass);
 	}
 
-	void UpdateObjectClass(ObjectClass objectClass) {
+	public void UpdateObjectClass(ObjectClass objectClass) {
 		this.objectClass = objectClass;
 		switch (objectClass) {
 		case(ObjectClass.Burstable):
@@ -36,6 +36,8 @@ public class ObjectWasHit : MonoBehaviour {
 
 		switch (objectClass) {
 		case(ObjectClass.Burstable):
+			Collider col = gameObject.GetComponent<Collider> ();
+			col.enabled = !col.enabled;
 			Instantiate(score_particle, transform.position, transform.rotation);
 			Destroy(gameObject);
 			break;

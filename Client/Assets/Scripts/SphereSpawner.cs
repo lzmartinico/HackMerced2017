@@ -28,9 +28,22 @@ public class SphereSpawner: MonoBehaviour {
 		location = new Vector3(location.x + transform.position.x, location.y + transform.position.y, location.z + transform.position.z);
 
 		// Spawn the actual object
-		Instantiate (object_to_spawn, location, Random.rotation, transform);
+		GameObject obj = Instantiate (object_to_spawn, location, Random.rotation, transform);
+		ChooseMaterialType (obj);
 
 		// Tell the next object to spawn
 		InitializeNextSpawn ();
+	}
+
+	void ChooseMaterialType(GameObject obj) {
+		ObjectWasHit objectWasHit = obj.GetComponent<ObjectWasHit> ();
+		float rand = Random.value;
+		ObjectWasHit.ObjectClass objClass;
+		if (rand > 0.8f) {
+			objClass = ObjectWasHit.ObjectClass.Burstable;
+		} else {
+			objClass = ObjectWasHit.ObjectClass.Heavy;
+		}
+		objectWasHit.UpdateObjectClass (objClass);
 	}
 }

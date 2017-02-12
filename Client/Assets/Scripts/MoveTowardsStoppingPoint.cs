@@ -53,5 +53,7 @@ public class MoveTowardsStoppingPoint : MonoBehaviour {
 
 	public void ToggleMoveAwayFromStoppingPoint() {
 		reverse = !reverse;
+		Collider col = gameObject.GetComponent<Collider> ();
+		col.enabled = !col.enabled;
 	}
 }
