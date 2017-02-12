@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class DestroyOnTimer : MonoBehaviour {
 
-	public float min_time = 0.5f;
-	public float max_time = 2.0f;
+	public float min_time;
+	public float max_time;
 	private float _life_remaining;
+
+	public DestroyOnTimer (float min, float max) {
+		min_time = min;
+		max_time = max;
+	}
 
 	// Use this for initialization
 	void Start () {
