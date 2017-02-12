@@ -9,6 +9,7 @@ public class MoveTowardsStoppingPoint : MonoBehaviour {
 	private Light lt;
 	private float distance;
 	private Vector3 prev;
+	public bool reverse = false;
 
 	void Start () {
         GameObject[] stoppingPoints = GameObject.FindGameObjectsWithTag ("StoppingPoint");
@@ -23,7 +24,13 @@ public class MoveTowardsStoppingPoint : MonoBehaviour {
 	void Update() {
 		float step = speed * Time.deltaTime;
 		float pd = (transform.position - target.position).magnitude;
-		Vector3 move = Vector3.MoveTowards(transform.position, target.position, step);
+		Vector3 move = transform.position;
+		if (reverse) {
+			Vector3 reversePosition = Vector3.Scale ((target.position - transform.position).normalized, new Vector3 (-1000, -1000, -1000));
+			move = Vector3.MoveTowards(transform.position, reversePosition, step);
+		} else {
+			move = Vector3.MoveTowards(transform.position, target.position, step);
+		}
 		if (move != transform.position) {
 			prev = move;
 			transform.position = move;
@@ -33,5 +40,9 @@ public class MoveTowardsStoppingPoint : MonoBehaviour {
 			transform.position = Vector3.MoveTowards (transform.position, transform.position + prev, step);
 			Destroy (gameObject);
 		}
+	}
+
+	public void ToggleMoveAwayFromStoppingPoint() {
+		reverse = !reverse;
 	}
 }

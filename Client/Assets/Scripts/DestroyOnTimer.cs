@@ -7,6 +7,11 @@ public class DestroyOnTimer : MonoBehaviour {
 	public float min_time = 0.5f;
 	public float max_time = 2.0f;
 	private float _life_remaining;
+	
+	public DestroyOnTimer (float min_time, float max_time) {
+		this.min_time = min_time;
+		this.max_time = max_time;
+	}
 
 	// Use this for initialization
 	void Start () {
