@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveTowardsStoppingPoint : MonoBehaviour {
 
 	public float speed;
-	private Transform target;
+	public Transform target;
 	private Light lt;
 	private float distance;
 	private Vector3 prev;
@@ -37,8 +37,17 @@ public class MoveTowardsStoppingPoint : MonoBehaviour {
 			lt.intensity += 8 * (pd - (transform.position - target.position).magnitude) / distance;
 		} else {
 			lt.intensity = 0;
+			ScoreDecrement ();
 			transform.position = Vector3.MoveTowards (transform.position, transform.position + prev, step);
 			Destroy (gameObject);
+		}
+	}
+
+	void ScoreDecrement() {
+		GameObject[] scoreKeepers = GameObject.FindGameObjectsWithTag ("ScoreKeeper");
+
+		foreach (GameObject scoreKeeper in scoreKeepers) {
+			scoreKeeper.GetComponent<ScoreKeeper> ().DecrementScore ();
 		}
 	}
 
