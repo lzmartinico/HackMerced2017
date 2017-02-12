@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScoreKeeper : MonoBehaviour {
 
 	public GameObject IncrementLabel;
+	public GameObject DecrementLabel;
 	public Text score_count;
 	public Vector3 position;
 	public Quaternion rotation;
@@ -29,5 +30,11 @@ public class ScoreKeeper : MonoBehaviour {
 	public void DecrementScore(){
 		score -= 1;
 		score_count.text = score.ToString();
+		GameObject decScore = Instantiate (DecrementLabel, parent.transform.position, new Quaternion(), parent);
+		MoveInDirection move = decScore.AddComponent<MoveInDirection> ();
+		move.direction = Vector3.down;
+		DestroyOnTimer d = decScore.AddComponent<DestroyOnTimer>();
+		d.min_time = 1.0f;
+		d.max_time = 2.0f;
 	}
 }
