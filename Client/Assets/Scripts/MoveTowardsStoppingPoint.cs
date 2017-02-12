@@ -8,6 +8,7 @@ public class MoveTowardsStoppingPoint : MonoBehaviour {
 	private Transform target;
 	private Light lt;
 	private float distance;
+	private Vector3 prev;
 
 	void Start () {
         GameObject[] stoppingPoints = GameObject.FindGameObjectsWithTag ("StoppingPoint");
@@ -22,9 +23,15 @@ public class MoveTowardsStoppingPoint : MonoBehaviour {
 	void Update() {
 		float step = speed * Time.deltaTime;
 		float pd = (transform.position - target.position).magnitude;
-		transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-
-		lt.intensity += 8*(pd-(transform.position - target.position).magnitude)/distance;
-		// TODO: let move a little bit past stop and destroy with Destroy(transform)
+		Vector3 move = Vector3.MoveTowards(transform.position, target.position, step);
+		if (move != transform.position) {
+			prev = move;
+			transform.position = move;
+			lt.intensity += 8 * (pd - (transform.position - target.position).magnitude) / distance;
+		} else {
+			lt.intensity = 0;
+			transform.position = Vector3.MoveTowards (transform.position, transform.position + prev, step);
+			Destroy (gameObject);
+		}
 	}
 }
