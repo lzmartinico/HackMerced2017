@@ -6,7 +6,7 @@ public class ObjectWasHit : MonoBehaviour {
 
 	public enum ObjectClass {Burstable, Heavy};
 
-	public ObjectClass objectClass = ObjectClass.Burstable;
+	public Script.note.NoteClass noteClass = Script.note.NoteClass.Burstable;
 	public GameObject score_particle;
 
 	public Material defaultMaterial;
@@ -14,16 +14,16 @@ public class ObjectWasHit : MonoBehaviour {
 	public Material heavyMaterial;
 
 	void Start() {
-		UpdateObjectClass (objectClass);
+		UpdateNoteClass (noteClass);
 	}
 
-	public void UpdateObjectClass(ObjectClass objectClass) {
-		this.objectClass = objectClass;
-		switch (objectClass) {
-		case(ObjectClass.Burstable):
+	public void UpdateNoteClass(Script.note.NoteClass noteClass) {
+		this.noteClass = noteClass;
+		switch (noteClass) {
+		case(Script.note.NoteClass.Burstable):
 			GetComponent<Renderer> ().material = burstableMaterial;
 			break;
-		case(ObjectClass.Heavy):
+		case(Script.note.NoteClass.Heavy):
 			GetComponent<Renderer> ().material = heavyMaterial;
 			break;
 		default:
@@ -34,21 +34,19 @@ public class ObjectWasHit : MonoBehaviour {
 
 	public void ReactToHit() {
 
-		switch (objectClass) {
-		case(ObjectClass.Burstable):
+		switch (noteClass) {
+		case(Script.note.NoteClass.Burstable):
 			Collider col = gameObject.GetComponent<Collider> ();
 			col.enabled = !col.enabled;
 			Instantiate(score_particle, transform.position, transform.rotation);
 			Destroy(gameObject);
 			break;
-		case(ObjectClass.Heavy):
+		case(Script.note.NoteClass.Heavy):
 			MoveTowardsStoppingPoint moveTowardsStoppingPoint = gameObject.GetComponent<MoveTowardsStoppingPoint> ();
 			moveTowardsStoppingPoint.ToggleMoveAwayFromStoppingPoint ();
 			ReverseOnTimer reverseOnTimer = gameObject.AddComponent<ReverseOnTimer> ();
 			reverseOnTimer._reverse_time = 0.1f;
-			UpdateObjectClass (ObjectClass.Burstable);
-//			DestroyOnTimer destroyOnTimer = gameObject.AddComponent<DestroyOnTimer>();
-//			destroyOnTimer = new DestroyOnTimer(30,35);
+			UpdateNoteClass (Script.note.NoteClass.Burstable);
 			break;
 		default:
 			break;

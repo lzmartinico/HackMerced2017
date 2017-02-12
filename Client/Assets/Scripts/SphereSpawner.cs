@@ -38,12 +38,12 @@ public class SphereSpawner: MonoBehaviour {
 	void ChooseMaterialType(GameObject obj) {
 		ObjectWasHit objectWasHit = obj.GetComponent<ObjectWasHit> ();
 		float rand = Random.value;
-		ObjectWasHit.ObjectClass objClass;
-		if (rand > 0.8f) {
-			objClass = ObjectWasHit.ObjectClass.Burstable;
+		Script.note.NoteClass noteClass;
+		if (rand < 0.8f) {
+			noteClass = Script.note.NoteClass.Burstable;
 		} else {
-			objClass = ObjectWasHit.ObjectClass.Heavy;
+			noteClass = Script.note.NoteClass.Heavy;
 		}
-		objectWasHit.UpdateObjectClass (objClass);
+		objectWasHit.UpdateNoteClass (noteClass);
 	}
 }

@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveTowardsStoppingPoint : MonoBehaviour {
+public class MoveTowardsStoppingPointDebug : MonoBehaviour {
 
 	public float speed;
 	public Transform target;
 	private Light lt;
+	public bool targetStoppingpointsElseCamera = false;
 	public float distance;
 	public float distanceTraveled;
 	public float rate;
 	public float travelTime;
-	public float estTimeTillArrival;
-	public float timeSinceStartSong;
-	public float estArrivalTime = 0;
+	public float estArrival;
 	private float startTime;
 	private Vector3 startPos;
 	private Vector3 prev;
@@ -21,9 +20,7 @@ public class MoveTowardsStoppingPoint : MonoBehaviour {
 
 	void Start () {
 		startTime = Time.fixedTime;
-        GameObject[] stoppingPoints = GameObject.FindGameObjectsWithTag ("StoppingPoint");
-		int index = Random.Range (0, stoppingPoints.Length);
-		target = stoppingPoints [index].transform;
+		target = DecideTarget ();
 		lt = GetComponent<Light>();
 		lt.range = 3;
 		lt.intensity = 0;
@@ -54,9 +51,22 @@ public class MoveTowardsStoppingPoint : MonoBehaviour {
 		travelTime = Time.fixedTime - startTime;
 		distanceTraveled = (startPos - transform.position).magnitude;
 		rate = distanceTraveled / travelTime;
-		estTimeTillArrival = (transform.position - target.position).magnitude / rate;
-		timeSinceStartSong = Time.fixedTime;
-		estArrivalTime = timeSinceStartSong + estTimeTillArrival;
+		estArrival = (transform.position - target.position).magnitude / rate;
+	}
+
+	Transform DecideTarget() {
+		Transform target;
+		if (targetStoppingpointsElseCamera) {
+			GameObject[] stoppingPoints = GameObject.FindGameObjectsWithTag ("StoppingPoint");
+			int index = Random.Range (0, stoppingPoints.Length);
+			target = stoppingPoints [index].transform;
+		} else {
+			GameObject[] mainCameras = GameObject.FindGameObjectsWithTag ("MainCamera");
+			// There should only be one camera, But if there is more than one choosing one from them seems okay
+			int index = Random.Range (0, mainCameras.Length);
+			target = mainCameras [index].transform;
+		}
+		return target;
 	}
 
 	void ScoreDecrement() {
