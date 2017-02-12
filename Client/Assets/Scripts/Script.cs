@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Script : MonoBehaviour {
 
+	// Distance in meters
+	public float distanceOffset;
 	public List<note> script;
 
 	[System.Serializable]

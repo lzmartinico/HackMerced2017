@@ -7,7 +7,7 @@ public class Scripted_Sphere_Spawner : MonoBehaviour {
 	public GameObject object_to_spawn;
 	public Script script;
 
-	public float _startTime;
+	private float _startTime;
 	private Transform cameraTransform;
 	private SphereCollider sphereCollider;
 	// Calculated using MoveTowardsStoppingPointDebug
@@ -33,7 +33,7 @@ public class Scripted_Sphere_Spawner : MonoBehaviour {
 	}
 
 	IEnumerator SpawnObject(Script.note note) {
-		NoteInstance noteInstance = new NoteInstance (note,_startTime,cameraTransform.position,sphereCollider.radius,transform.position);
+		NoteInstance noteInstance = new NoteInstance (note,_startTime,cameraTransform.position,sphereCollider.radius,transform.position,script.distanceOffset);
 
 		if (noteInstance.timeToSpare > 0) {
 			// Wait spare time before continuing
@@ -52,7 +52,7 @@ public class Scripted_Sphere_Spawner : MonoBehaviour {
 		public Vector3 spawnLocation;
 		public float timeToSpare;
 
-		public NoteInstance(Script.note note, float startTime, Vector3 cameraPosition,float radius,Vector3 spawnerLocation) {
+		public NoteInstance(Script.note note, float startTime, Vector3 cameraPosition,float radius,Vector3 spawnerLocation,float distanceOffset) {
 			// Choose a random location within the unit sphere
 			Vector3 location = Random.insideUnitSphere * radius;
 			// Center the random location around the Scripted_SpehereSpawner
@@ -62,7 +62,7 @@ public class Scripted_Sphere_Spawner : MonoBehaviour {
 			float timeRequiredUntilReachedCamera = (cameraPosition - location).magnitude / TRAVEL_RATE_CONSTANT;
 
 			// Calculate desired arrival time 
-			float desiredArrival = startTime + note.timeUntilInPlayerRange;
+			float desiredArrival = startTime + note.timeUntilInPlayerRange + (distanceOffset / TRAVEL_RATE_CONSTANT);
 
 			// The time that we have until the note must be delivered
 			float timeAvailable = desiredArrival - Time.fixedTime;
